@@ -21,10 +21,20 @@ resources:
         - name: schema
           default: ${var.schema}
 
+
       tasks:
-        - task_key: notebook_task
+        - task_key: Customer360
           notebook_task:
             notebook_path: ../src/office_360.ipynb
+            source: WORKSPACE
+            
+        - task_key: Transaction_summary
+          depends_on:
+            - task_key: Customer360
+          notebook_task:
+            notebook_path: ../src/Transaction_summary.ipynb
+            source: WORKSPACE
+            
 
       environments:
         - environment_key: default
